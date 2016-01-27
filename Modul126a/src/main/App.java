@@ -43,8 +43,7 @@ public class App {
 
 			// Choose weapon
 			while (!weapons.contains(weapon)) {
-				System.out.println("Choose a Weapon sir(Sword("
-						+ sword.getAttack() + "), Axe(" + axe.getAttack()
+				System.out.println("Choose a Weapon sir(Sword(" + sword.getAttack() + "), Axe(" + axe.getAttack()
 						+ "), Hammer(" + hammer.getAttack() + ")): ");
 				weapon = br.readLine().toLowerCase();
 			}
@@ -131,6 +130,7 @@ public class App {
 
 	/**
 	 * Attack event
+	 * 
 	 * @param knight
 	 * @param enemy
 	 * @return boolean
@@ -138,8 +138,7 @@ public class App {
 	private boolean attack(Knight knight, Knight enemy) {
 		System.out.println(knight.getName() + " attacks " + enemy.getName());
 		knight.attackEnemy(enemy);
-		System.out.println(enemy.getName() + " has now " + enemy.getHealth()
-				+ "HP. \n");
+		System.out.println(enemy.getName() + " has now " + enemy.getHealth() + "HP. \n");
 		if (enemy.getHealth() == 0) {
 			System.out.println("\n" + enemy.getName() + " died.");
 			return true;
@@ -156,13 +155,11 @@ public class App {
 	 */
 	private boolean block(Knight knight, Knight enemy) {
 		int defense = knight.getDefens();
-		System.out.println(knight.getName() + " blocks the attack from "
-				+ enemy.getName());
+		System.out.println(knight.getName() + " blocks the attack from " + enemy.getName());
 		Shield shield = knight.getShield();
 		knight.setDefens(defense + shield.getDefense());
 		enemy.attackEnemy(knight);
-		System.out.println(knight.getName() + " has now " + knight.getHealth()
-				+ "HP. \n");
+		System.out.println(knight.getName() + " has now " + knight.getHealth() + "HP. \n");
 		knight.setDefens(defense);
 		if (enemy.getHealth() == 0) {
 			System.out.println("\n" + enemy.getName() + " died.");
