@@ -6,8 +6,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author vmadmin Steuert die Applikation (Momentan auch noch Userinput)
+ */
+
 public class App {
 
+	/**
+	 * Controller Method
+	 */
 	public App() {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +30,6 @@ public class App {
 		Knight enemy = new Knight();
 
 		String weapon = "";
-		boolean test;
 
 		ArrayList<String> weapons = new ArrayList<String>();
 		weapons.add("axe");
@@ -37,8 +43,9 @@ public class App {
 
 			// Choose weapon
 			while (!weapons.contains(weapon)) {
-				System.out.println("Choose a Weapon sir(Sword(" + sword.getAttack() + "), Axe(" + axe.getAttack() 
-									+ "), Hammer(" + hammer.getAttack() + ")): ");
+				System.out.println("Choose a Weapon sir(Sword("
+						+ sword.getAttack() + "), Axe(" + axe.getAttack()
+						+ "), Hammer(" + hammer.getAttack() + ")): ");
 				weapon = br.readLine().toLowerCase();
 			}
 
@@ -78,7 +85,7 @@ public class App {
 		}
 
 		try {
-			//Fight
+			// Fight
 			while (player.getHealth() > 0 && enemy.getHealth() > 0) {
 				String input = "";
 				do {
@@ -93,6 +100,7 @@ public class App {
 					if (attack(enemy, player)) {
 						break;
 					}
+
 				} else {
 					if (block(player, enemy)) {
 						break;
@@ -108,19 +116,30 @@ public class App {
 		new App();
 	}
 
-	//Show equipment
+	/**
+	 * Show equipment of a specified Knight
+	 * 
+	 * @param knight
+	 */
 	private void Showequipment(Knight knight) {
 		System.out.println("Name: Sir " + knight.getName());
 		System.out.println("Attack: " + knight.getAttack());
 		System.out.println("Defense: " + knight.getDefens());
+		System.out.println("Shield: " + knight.getShieldvalue());
 		System.out.println("Weapon: " + knight.getWeaponname() + "\n");
 	}
 
-	// Attack
+	/**
+	 * Attack event
+	 * @param knight
+	 * @param enemy
+	 * @return boolean
+	 */
 	private boolean attack(Knight knight, Knight enemy) {
 		System.out.println(knight.getName() + " attacks " + enemy.getName());
 		knight.attackEnemy(enemy);
-		System.out.println(enemy.getName() + " has now " + enemy.getHealth() + "HP. \n");
+		System.out.println(enemy.getName() + " has now " + enemy.getHealth()
+				+ "HP. \n");
 		if (enemy.getHealth() == 0) {
 			System.out.println("\n" + enemy.getName() + " died.");
 			return true;
@@ -128,14 +147,22 @@ public class App {
 		return false;
 	}
 
-	// Block
+	/**
+	 * Block event
+	 * 
+	 * @param knight
+	 * @param enemy
+	 * @return boolean
+	 */
 	private boolean block(Knight knight, Knight enemy) {
 		int defense = knight.getDefens();
-		System.out.println(knight.getName() + " blocks the attack from " + enemy.getName());
+		System.out.println(knight.getName() + " blocks the attack from "
+				+ enemy.getName());
 		Shield shield = knight.getShield();
 		knight.setDefens(defense + shield.getDefense());
 		enemy.attackEnemy(knight);
-		System.out.println(knight.getName() + " has now " + knight.getHealth() + "HP. \n");
+		System.out.println(knight.getName() + " has now " + knight.getHealth()
+				+ "HP. \n");
 		knight.setDefens(defense);
 		if (enemy.getHealth() == 0) {
 			System.out.println("\n" + enemy.getName() + " died.");
@@ -143,8 +170,15 @@ public class App {
 		}
 		return false;
 	}
-	
-	private int random(int max, int min){
+
+	/**
+	 * Random integer generator
+	 * 
+	 * @param max
+	 * @param min
+	 * @return integer
+	 */
+	private int random(int max, int min) {
 		Random rand = new Random();
 		return rand.nextInt((max - min) + 1) + min;
 	}

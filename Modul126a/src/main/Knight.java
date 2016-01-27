@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * @author vmadmin
+ * Ist ein Ritter
+ * Berechnet die Angriffe des Ritters
+ */
 public class Knight {
 	private int health = 100;
 	private int attack;
@@ -10,6 +15,10 @@ public class Knight {
 
 	public Shield getShield() {
 		return shield;
+	}
+	
+	public int getShieldvalue(){
+		return shield.getDefense();
 	}
 
 	public void setShield(Shield shield) {
@@ -36,7 +45,7 @@ public class Knight {
 		String name = weapon.getName();
 		return name;
 	}
-
+	
 	public int getHealth() {
 		return health;
 	}

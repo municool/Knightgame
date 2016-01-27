@@ -2,6 +2,11 @@ package main;
 
 import java.util.Random;
 
+/**
+ * @author vmadmin
+ * Ist ein Schild
+ * Setzt und returniert die Defensiv und Nameswerte
+ */
 public class Shield {
 	private int defense;
 	private String name;
